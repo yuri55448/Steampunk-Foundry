@@ -1,5 +1,7 @@
 # Steampunk Foundry
 
+[![Version](https://img.shields.io/github/v/release/yuri55448/Steampunk-Foundry)](https://github.com/yuri55448/Focus-File-Manager/releases)[![Downloads](https://img.shields.io/github/downloads/yuri55448/Steampunk-Foundry/total)](https://github.com/yuri55448/Steampunk-Foundry/releases)
+
 **English** | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 A steampunk theme for Obsidian: brass, copper and verdigris colors, railway-style indent guides, mechanical gears, gauge-plate callouts, and a day-and-night sky that flows across the tab bar. Every effect is **off by default** — turn on only what you want.
