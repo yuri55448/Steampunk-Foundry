@@ -19,6 +19,7 @@ Obsidian 的蒸汽朋克主题：黄铜、红铜、铜绿的配色，铁轨缩�
 ![](image/Snipaste_2026-11-04_08-47-09.png)
 ![](image/Snipaste_2026-11-04_08-47-23.png)
 ![](image/Snipaste_2026-11-04_08-47-34.png)
+![](image/Snipaste_2026-11-04_12-20-34.png)
 
 ## 历史更新
 

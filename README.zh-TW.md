@@ -19,6 +19,7 @@ Obsidian 的蒸氣朋克佈景主題：黃銅、紅銅、銅綠的配色，鐵�
 ![](image/Snipaste_2026-11-04_08-47-09.png)
 ![](image/Snipaste_2026-11-04_08-47-23.png)
 ![](image/Snipaste_2026-11-04_08-47-34.png)
+![](image/Snipaste_2026-11-04_12-20-34.png)
 
 ## 歷史更新
 
