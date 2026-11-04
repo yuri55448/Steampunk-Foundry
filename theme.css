@@ -5,253 +5,413 @@
 
 /* @settings
 
-name: Steampunk Foundry 蒸氣朋克
+name: Steampunk Foundry
 id: steampunk-foundry
 settings:
-    -
-        id: sp-warn
-        title: ⚠ 效能提示（較可能拖慢大型筆記）
-        description: 很耗：金屬閃光、蒸氣霧氣。中等：極光/星雲/流星/奇觀、捲動連動齒輪。輕微：日月天空、背景齒輪。大型筆記請把「效能預設」選成省電。
-        type: info-text
-    -
-        id: sp-h-perf
-        title: 效能與更新頻率
-        type: heading
-        level: 1
-        collapsed: false
-    -
-        id: sp-perf
-        title: 效能預設
-        description: 省電＝關閉整窗粒子、蒸氣 / 金屬閃光 / 捲動齒輪，天體降為 10fps
-        type: class-select
-        allowEmpty: false
-        default: sp-perf-high
-        options:
-            -
-                label: 高畫質（全開）
-                value: sp-perf-high
-            -
-                label: 平衡（天體 30fps、關閉蒸氣 / 金屬閃光 / 捲動齒輪）
-                value: sp-perf-balanced
-            -
-                label: 省電（再關閉整窗粒子、天體 10fps）
-                value: sp-perf-low
-
-    -
-        id: sp-fps
-        title: 天體（太陽/月亮）幀率
-        description: 以預設 90 秒一天計算；越低越省電
-        type: class-select
-        allowEmpty: false
-        default: sp-fps-60
-        options:
-            -
-                label: 60 fps
-                value: sp-fps-60
-            -
-                label: 30 fps
-                value: sp-fps-30
-            -
-                label: 15 fps
-                value: sp-fps-15
-            -
-                label: 10 fps
-                value: sp-fps-10
-            -
-                label: 5 fps
-                value: sp-fps-5
-    -
-        id: sp-rate
-        title: 特效更新率（流星、閃電、奇觀）
-        type: class-select
-        allowEmpty: false
-        default: sp-rate-high
-        options:
-            -
-                label: 高（約 12 次/秒）
-                value: sp-rate-high
-            -
-                label: 中
-                value: sp-rate-mid
-            -
-                label: 低
-                value: sp-rate-low
-
-    -
-        id: sp-h-motion
-        title: 動態總開關與效果開關
-        type: heading
-        level: 1
-        collapsed: false
-    -
-        id: sp-motion-note
-        title: 預設全部關閉
-        description: 以下每一項都需要自己開啟才會執行；沒開的效果不會載入，Obsidian 啟動也比較快。
-        type: info-text
-    -
-        id: sp-motion
-        title: 開啟背景動態（天空日夜流轉、齒輪 / 蒸汽 / 金屬閃光運轉）
-        type: class-toggle
-    -
-        id: sp-on-sky
-        title: 開啟分頁列與路徑列的日月星空
-        type: class-toggle
-    -
-        id: sp-sky-extend
-        title: 天空延伸到路徑列（關＝只畫在分頁列）
-        type: class-toggle
-    -
-        id: sp-on-gears
-        title: 開啟背景齒輪（右上咬合齒輪、側欄齒輪）
-        type: class-toggle
-    -
-        id: sp-on-scrollgear
-        title: 開啟捲動連動的齒輪
-        type: class-toggle
-    -
-        id: sp-on-parchment
-        title: 開啟羊皮紙質感背景
-        type: class-toggle
-    -
-        id: sp-on-steam
-        title: 開啟蒸氣霧氣
-        type: class-toggle
-    -
-        id: sp-on-frame
-        title: 開啟鉚釘外框
-        type: class-toggle
-    -
-        id: sp-on-shine
-        title: 開啟金屬閃光
-        type: class-toggle
-    -
-        id: sp-on-widgets
-        title: 開啟按鈕 / 標籤 / 搜尋框的黃銅樣式
-        type: class-toggle
-    -
-        id: sp-on-nameplate
-        title: 開啟檔名銘牌樣式
-        type: class-toggle
-    -
-        id: sp-on-fileicons
-        title: 開啟文件夾與文件圖標（用其他圖標插件時請保持關閉）
-        type: class-toggle
-    -
-        id: sp-on-cogarrow
-        title: 開啟齒輪展開符號（關＝原本箭頭）
-        type: class-toggle
-    -
-        id: sp-on-guides
-        title: 開啟檔案列表的鐵軌縮排線
-        type: class-toggle
-    -
-        id: sp-h-numbers
-        title: 數值調整
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: sp-on-linewidth
-        title: 開啟自訂內容欄寬度（關＝使用 Obsidian 原本的欄寬）
-        type: class-toggle
-
-    -
-        id: sp-line-width
-        title: 內容欄寬度（編輯器 / 閱讀模式）
-        type: variable-number-slider
-        default: 60
-        min: 40
-        max: 100
-        step: 5
-        format: rem
-    -
-        id: sp-day-length
-        title: 日夜循環一天的長度（秒）
-        type: variable-number-slider
-        default: 90
-        min: 10
-        max: 600
-        step: 5
-        format: s
-    -
-        id: sp-sky-dim
-        title: 天空壓暗程度（分頁文字看不清楚就調高）
-        type: variable-number-slider
-        default: 0.45
-        min: 0
-        max: 1
-        step: 0.05
-    -
-        id: sp-watermark-opacity
-        title: 背景齒輪濃度
-        type: variable-number-slider
-        default: 0.08
-        min: 0
-        max: 0.3
-        step: 0.01
-    -
-        id: sp-steam-opacity
-        title: 蒸氣霧氣濃度
-        type: variable-number-slider
-        default: 0.8
-        min: 0
-        max: 1
-        step: 0.05
-    -
-        id: sp-h-colors
-        title: 顏色
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: sp-brass-hi
-        title: 亮黃銅（H1、強調、粗體）
-        type: variable-themed-color
-        format: hex
-        default-light: '#7a4f10'
-        default-dark: '#e8b85a'
-    -
-        id: sp-brass
-        title: 黃銅（邊框、表頭、按鈕）
-        type: variable-themed-color
-        format: hex
-        default-light: '#9a6a1f'
-        default-dark: '#c8923a'
-    -
-        id: sp-copper
-        title: 紅銅（H2、文件夾名稱）
-        type: variable-themed-color
-        format: hex
-        default-light: '#a2502a'
-        default-dark: '#c0693a'
-    -
-        id: sp-verdigris
-        title: 銅綠（H3、連結）
-        type: variable-themed-color
-        format: hex
-        default-light: '#2f7566'
-        default-dark: '#5fa896'
-    -
-        id: sp-h-fonts
-        title: 字體（填完整字體清單，用逗號分隔）
-        type: heading
-        level: 1
-        collapsed: true
-    -
-        id: sp-font-head
-        title: 標題字體
-        type: variable-text
-        default: 'Cinzel, "Noto Serif TC", "Songti TC", "PMingLiU", serif'
-    -
-        id: sp-font-text
-        title: 正文字體
-        type: variable-text
-        default: '"Crimson Pro", "Noto Serif TC", "Songti TC", "PMingLiU", serif'
-    -
-        id: sp-font-code
-        title: 代碼字體
-        type: variable-text
-        default: '"Courier Prime", "Cascadia Mono", "Menlo", monospace'
+- id: sp-warn
+  title: ⚠ Performance warning (may slow down large notes)
+  title.zh-TW: ⚠ 效能提示（較可能拖慢大型筆記）
+  title.zh-tw: ⚠ 效能提示（較可能拖慢大型筆記）
+  title.zh: ⚠ 性能提示（可能拖慢大型笔记）
+  title.zh-cn: ⚠ 性能提示（可能拖慢大型笔记）
+  title.ja: ⚠ パフォーマンスの注意（大きなノートで重くなることがあります）
+  description: 'Heavy: metallic shine, steam haze. Medium: aurora / nebula / meteors / wonders, scroll-linked gear. Light: sun and moon sky, background gears. For large notes, set the Performance preset to Power saving.'
+  description.zh-TW: 很耗：金屬閃光、蒸氣霧氣。中等：極光/星雲/流星/奇觀、捲動連動齒輪。輕微：日月天空、背景齒輪。大型筆記請把「效能預設」選成省電。
+  description.zh-tw: 很耗：金屬閃光、蒸氣霧氣。中等：極光/星雲/流星/奇觀、捲動連動齒輪。輕微：日月天空、背景齒輪。大型筆記請把「效能預設」選成省電。
+  description.zh: 很耗：金属闪光、蒸汽雾气。中等：极光/星云/流星/奇观、滚动联动齿轮。轻微：日月天空、背景齿轮。大型笔记请把「性能预设」选成省电。
+  description.zh-cn: 很耗：金属闪光、蒸汽雾气。中等：极光/星云/流星/奇观、滚动联动齿轮。轻微：日月天空、背景齿轮。大型笔记请把「性能预设」选成省电。
+  description.ja: 重い：金属の輝き、蒸気のもや。中程度：オーロラ／星雲／流星／奇観、スクロール連動の歯車。軽い：日月の空、背景の歯車。大きなノートでは「パフォーマンスプリセット」を省電力にしてください。
+  type: info-text
+- id: sp-h-perf
+  title: Performance and update rate
+  title.zh-TW: 效能與更新頻率
+  title.zh-tw: 效能與更新頻率
+  title.zh: 性能与更新频率
+  title.zh-cn: 性能与更新频率
+  title.ja: パフォーマンスと更新頻度
+  type: heading
+  level: 1
+  collapsed: false
+- id: sp-perf
+  title: Performance preset
+  title.zh-TW: 效能預設
+  title.zh-tw: 效能預設
+  title.zh: 性能预设
+  title.zh-cn: 性能预设
+  title.ja: パフォーマンスプリセット
+  description: High quality = everything on. Balanced = celestial bodies 30 fps; steam, metallic shine and scroll-linked gear off. Power saving = also turns off full-window particles; celestial bodies 10 fps.
+  description.zh-TW: 高畫質＝全開。平衡＝天體 30fps，關閉蒸氣 / 金屬閃光 / 捲動齒輪。省電＝再關閉整窗粒子，天體降為 10fps。
+  description.zh-tw: 高畫質＝全開。平衡＝天體 30fps，關閉蒸氣 / 金屬閃光 / 捲動齒輪。省電＝再關閉整窗粒子，天體降為 10fps。
+  description.zh: 高画质＝全开。平衡＝天体 30fps，关闭蒸汽 / 金属闪光 / 滚动联动齿轮。省电＝再关闭整窗粒子，天体降为 10fps。
+  description.zh-cn: 高画质＝全开。平衡＝天体 30fps，关闭蒸汽 / 金属闪光 / 滚动联动齿轮。省电＝再关闭整窗粒子，天体降为 10fps。
+  description.ja: 高画質＝すべてオン。バランス＝天体 30fps、蒸気・金属の輝き・スクロール連動の歯車をオフ。省電力＝さらにウィンドウ全体の粒子をオフ、天体 10fps。
+  type: class-select
+  allowEmpty: false
+  default: sp-perf-high
+  options:
+  - label: High quality 高畫質
+    value: sp-perf-high
+  - label: Balanced 平衡
+    value: sp-perf-balanced
+  - label: Power saving 省電
+    value: sp-perf-low
+- id: sp-fps
+  title: Celestial body (sun / moon) frame rate
+  title.zh-TW: 天體（太陽/月亮）幀率
+  title.zh-tw: 天體（太陽/月亮）幀率
+  title.zh: 天体（太阳/月亮）帧率
+  title.zh-cn: 天体（太阳/月亮）帧率
+  title.ja: 天体（太陽／月）のフレームレート
+  description: Based on a 90-second day; lower saves power
+  description.zh-TW: 以預設 90 秒一天計算；越低越省電
+  description.zh-tw: 以預設 90 秒一天計算；越低越省電
+  description.zh: 以默认 90 秒一天计算；越低越省电
+  description.zh-cn: 以默认 90 秒一天计算；越低越省电
+  description.ja: 1日90秒の場合の値です。低いほど省電力
+  type: class-select
+  allowEmpty: false
+  default: sp-fps-60
+  options:
+  - label: 60 fps
+    value: sp-fps-60
+  - label: 30 fps
+    value: sp-fps-30
+  - label: 15 fps
+    value: sp-fps-15
+  - label: 10 fps
+    value: sp-fps-10
+  - label: 5 fps
+    value: sp-fps-5
+- id: sp-rate
+  title: Effect update rate (meteors, lightning, wonders)
+  title.zh-TW: 特效更新率（流星、閃電、奇觀）
+  title.zh-tw: 特效更新率（流星、閃電、奇觀）
+  title.zh: 特效更新率（流星、闪电、奇观）
+  title.zh-cn: 特效更新率（流星、闪电、奇观）
+  title.ja: エフェクトの更新頻度（流星・稲妻・奇観）
+  description: High ≈ 12 updates per second.
+  description.zh-TW: 高＝約每秒 12 次。
+  description.zh-tw: 高＝約每秒 12 次。
+  description.zh: 高＝约每秒 12 次。
+  description.zh-cn: 高＝约每秒 12 次。
+  description.ja: 高＝毎秒約12回。
+  type: class-select
+  allowEmpty: false
+  default: sp-rate-high
+  options:
+  - label: High 高
+    value: sp-rate-high
+  - label: Medium 中
+    value: sp-rate-mid
+  - label: Low 低
+    value: sp-rate-low
+- id: sp-h-motion
+  title: Master motion switch and effect switches
+  title.zh-TW: 動態總開關與效果開關
+  title.zh-tw: 動態總開關與效果開關
+  title.zh: 动态总开关与效果开关
+  title.zh-cn: 动态总开关与效果开关
+  title.ja: 動きのマスタースイッチと効果スイッチ
+  type: heading
+  level: 1
+  collapsed: false
+- id: sp-motion-note
+  title: Everything is off by default
+  title.zh-TW: 預設全部關閉
+  title.zh-tw: 預設全部關閉
+  title.zh: 默认全部关闭
+  title.zh-cn: 默认全部关闭
+  title.ja: 初期状態ではすべてオフ
+  description: Turn on each item you want. Effects that are off are not loaded, so Obsidian also starts faster.
+  description.zh-TW: 以下每一項都需要自己開啟才會執行；沒開的效果不會載入，Obsidian 啟動也比較快。
+  description.zh-tw: 以下每一項都需要自己開啟才會執行；沒開的效果不會載入，Obsidian 啟動也比較快。
+  description.zh: 以下每一项都需要自己开启才会执行；没开的效果不会加载，Obsidian 启动也比较快。
+  description.zh-cn: 以下每一项都需要自己开启才会执行；没开的效果不会加载，Obsidian 启动也比较快。
+  description.ja: 以下の項目は、オンにしたものだけが実行されます。オフの効果は読み込まれないため、Obsidian の起動も速くなります。
+  type: info-text
+- id: sp-motion
+  title: Background motion (sky cycle, gears / steam / metallic shine)
+  title.zh-TW: 開啟背景動態（天空日夜流轉、齒輪 / 蒸汽 / 金屬閃光運轉）
+  title.zh-tw: 開啟背景動態（天空日夜流轉、齒輪 / 蒸汽 / 金屬閃光運轉）
+  title.zh: 开启背景动态（天空日夜流转、齿轮 / 蒸汽 / 金属闪光运转）
+  title.zh-cn: 开启背景动态（天空日夜流转、齿轮 / 蒸汽 / 金属闪光运转）
+  title.ja: 背景の動きをオン（空の昼夜、歯車・蒸気・金属の輝き）
+  type: class-toggle
+- id: sp-on-sky
+  title: Day-and-night sky on the tab bar and breadcrumb bar
+  title.zh-TW: 開啟分頁列與路徑列的日月星空
+  title.zh-tw: 開啟分頁列與路徑列的日月星空
+  title.zh: 开启标签栏与路径栏的日月星空
+  title.zh-cn: 开启标签栏与路径栏的日月星空
+  title.ja: タブバーとパンくずバーの昼夜の空をオン
+  type: class-toggle
+- id: sp-sky-extend
+  title: Extend sky to the breadcrumb bar (off = tab bar only)
+  title.zh-TW: 天空延伸到路徑列（關＝只畫在分頁列）
+  title.zh-tw: 天空延伸到路徑列（關＝只畫在分頁列）
+  title.zh: 天空延伸到路径栏（关＝只画在标签栏）
+  title.zh-cn: 天空延伸到路径栏（关＝只画在标签栏）
+  title.ja: 空をパンくずバーまで広げる（オフ＝タブバーのみ）
+  type: class-toggle
+- id: sp-on-gears
+  title: Background gears (top-right meshing gears, sidebar gears)
+  title.zh-TW: 開啟背景齒輪（右上咬合齒輪、側欄齒輪）
+  title.zh-tw: 開啟背景齒輪（右上咬合齒輪、側欄齒輪）
+  title.zh: 开启背景齿轮（右上啮合齿轮、侧栏齿轮）
+  title.zh-cn: 开启背景齿轮（右上啮合齿轮、侧栏齿轮）
+  title.ja: 背景の歯車をオン（右上のかみ合う歯車、サイドバーの歯車）
+  type: class-toggle
+- id: sp-on-scrollgear
+  title: Scroll-linked gear
+  title.zh-TW: 開啟捲動連動的齒輪
+  title.zh-tw: 開啟捲動連動的齒輪
+  title.zh: 开启滚动联动的齿轮
+  title.zh-cn: 开启滚动联动的齿轮
+  title.ja: スクロール連動の歯車をオン
+  type: class-toggle
+- id: sp-on-parchment
+  title: Parchment texture background
+  title.zh-TW: 開啟羊皮紙質感背景
+  title.zh-tw: 開啟羊皮紙質感背景
+  title.zh: 开启羊皮纸质感背景
+  title.zh-cn: 开启羊皮纸质感背景
+  title.ja: 羊皮紙風の背景をオン
+  type: class-toggle
+- id: sp-on-steam
+  title: Steam haze
+  title.zh-TW: 開啟蒸氣霧氣
+  title.zh-tw: 開啟蒸氣霧氣
+  title.zh: 开启蒸汽雾气
+  title.zh-cn: 开启蒸汽雾气
+  title.ja: 蒸気のもやをオン
+  type: class-toggle
+- id: sp-on-frame
+  title: Riveted frame
+  title.zh-TW: 開啟鉚釘外框
+  title.zh-tw: 開啟鉚釘外框
+  title.zh: 开启铆钉外框
+  title.zh-cn: 开启铆钉外框
+  title.ja: リベット付きの枠をオン
+  type: class-toggle
+- id: sp-on-shine
+  title: Metallic shine
+  title.zh-TW: 開啟金屬閃光
+  title.zh-tw: 開啟金屬閃光
+  title.zh: 开启金属闪光
+  title.zh-cn: 开启金属闪光
+  title.ja: 金属の輝きをオン
+  type: class-toggle
+- id: sp-on-widgets
+  title: Brass style for buttons / tags / search box
+  title.zh-TW: 開啟按鈕 / 標籤 / 搜尋框的黃銅樣式
+  title.zh-tw: 開啟按鈕 / 標籤 / 搜尋框的黃銅樣式
+  title.zh: 开启按钮 / 标签 / 搜索框的黄铜样式
+  title.zh-cn: 开启按钮 / 标签 / 搜索框的黄铜样式
+  title.ja: ボタン／タグ／検索ボックスの真鍮スタイルをオン
+  type: class-toggle
+- id: sp-on-nameplate
+  title: File name plate style
+  title.zh-TW: 開啟檔名銘牌樣式
+  title.zh-tw: 開啟檔名銘牌樣式
+  title.zh: 开启文件名铭牌样式
+  title.zh-cn: 开启文件名铭牌样式
+  title.ja: ファイル名プレートのスタイルをオン
+  type: class-toggle
+- id: sp-on-fileicons
+  title: Folder and file icons (keep off if you use another icon plugin)
+  title.zh-TW: 開啟文件夾與文件圖標（用其他圖標插件時請保持關閉）
+  title.zh-tw: 開啟文件夾與文件圖標（用其他圖標插件時請保持關閉）
+  title.zh: 开启文件夹与文件图标（使用其他图标插件时请保持关闭）
+  title.zh-cn: 开启文件夹与文件图标（使用其他图标插件时请保持关闭）
+  title.ja: フォルダとファイルのアイコンをオン（他のアイコン系プラグイン使用時はオフのまま）
+  type: class-toggle
+- id: sp-on-cogarrow
+  title: Gear expand arrows (off = original arrows)
+  title.zh-TW: 開啟齒輪展開符號（關＝原本箭頭）
+  title.zh-tw: 開啟齒輪展開符號（關＝原本箭頭）
+  title.zh: 开启齿轮展开符号（关＝原本箭头）
+  title.zh-cn: 开启齿轮展开符号（关＝原本箭头）
+  title.ja: 歯車の展開記号をオン（オフ＝元の矢印）
+  type: class-toggle
+- id: sp-on-guides
+  title: Railway indent guides in the file list
+  title.zh-TW: 開啟檔案列表的鐵軌縮排線
+  title.zh-tw: 開啟檔案列表的鐵軌縮排線
+  title.zh: 开启文件列表的铁轨缩进线
+  title.zh-cn: 开启文件列表的铁轨缩进线
+  title.ja: ファイル一覧の線路風インデント線をオン
+  type: class-toggle
+- id: sp-h-numbers
+  title: Adjustments
+  title.zh-TW: 數值調整
+  title.zh-tw: 數值調整
+  title.zh: 数值调整
+  title.zh-cn: 数值调整
+  title.ja: 数値の調整
+  type: heading
+  level: 1
+  collapsed: true
+- id: sp-on-linewidth
+  title: Custom content width (off = Obsidian's own width)
+  title.zh-TW: 開啟自訂內容欄寬度（關＝使用 Obsidian 原本的欄寬）
+  title.zh-tw: 開啟自訂內容欄寬度（關＝使用 Obsidian 原本的欄寬）
+  title.zh: 开启自定义内容栏宽度（关＝使用 Obsidian 原本的栏宽）
+  title.zh-cn: 开启自定义内容栏宽度（关＝使用 Obsidian 原本的栏宽）
+  title.ja: カスタムのコンテンツ幅をオン（オフ＝Obsidian 本来の幅）
+  type: class-toggle
+- id: sp-line-width
+  title: Content width (editor / reading view)
+  title.zh-TW: 內容欄寬度（編輯器 / 閱讀模式）
+  title.zh-tw: 內容欄寬度（編輯器 / 閱讀模式）
+  title.zh: 内容栏宽度（编辑器 / 阅读模式）
+  title.zh-cn: 内容栏宽度（编辑器 / 阅读模式）
+  title.ja: コンテンツ幅（エディター／閲覧モード）
+  type: variable-number-slider
+  default: 60
+  min: 40
+  max: 100
+  step: 5
+  format: rem
+- id: sp-day-length
+  title: Length of one day-night cycle (seconds)
+  title.zh-TW: 日夜循環一天的長度（秒）
+  title.zh-tw: 日夜循環一天的長度（秒）
+  title.zh: 日夜循环一天的长度（秒）
+  title.zh-cn: 日夜循环一天的长度（秒）
+  title.ja: 昼夜サイクル1日の長さ（秒）
+  type: variable-number-slider
+  default: 90
+  min: 10
+  max: 600
+  step: 5
+  format: s
+- id: sp-sky-dim
+  title: Sky dimming (raise it if tab text is hard to read)
+  title.zh-TW: 天空壓暗程度（分頁文字看不清楚就調高）
+  title.zh-tw: 天空壓暗程度（分頁文字看不清楚就調高）
+  title.zh: 天空压暗程度（标签文字看不清楚就调高）
+  title.zh-cn: 天空压暗程度（标签文字看不清楚就调高）
+  title.ja: 空の暗さ（タブの文字が読みにくいときは上げてください）
+  type: variable-number-slider
+  default: 0.45
+  min: 0
+  max: 1
+  step: 0.05
+- id: sp-watermark-opacity
+  title: Background gear opacity
+  title.zh-TW: 背景齒輪濃度
+  title.zh-tw: 背景齒輪濃度
+  title.zh: 背景齿轮浓度
+  title.zh-cn: 背景齿轮浓度
+  title.ja: 背景の歯車の濃さ
+  type: variable-number-slider
+  default: 0.08
+  min: 0
+  max: 0.3
+  step: 0.01
+- id: sp-steam-opacity
+  title: Steam haze opacity
+  title.zh-TW: 蒸氣霧氣濃度
+  title.zh-tw: 蒸氣霧氣濃度
+  title.zh: 蒸汽雾气浓度
+  title.zh-cn: 蒸汽雾气浓度
+  title.ja: 蒸気のもやの濃さ
+  type: variable-number-slider
+  default: 0.8
+  min: 0
+  max: 1
+  step: 0.05
+- id: sp-h-colors
+  title: Colors
+  title.zh-TW: 顏色
+  title.zh-tw: 顏色
+  title.zh: 颜色
+  title.zh-cn: 颜色
+  title.ja: 色
+  type: heading
+  level: 1
+  collapsed: true
+- id: sp-brass-hi
+  title: Bright brass (H1, emphasis, bold)
+  title.zh-TW: 亮黃銅（H1、強調、粗體）
+  title.zh-tw: 亮黃銅（H1、強調、粗體）
+  title.zh: 亮黄铜（H1、强调、粗体）
+  title.zh-cn: 亮黄铜（H1、强调、粗体）
+  title.ja: 明るい真鍮（H1・強調・太字）
+  type: variable-themed-color
+  format: hex
+  default-light: '#7a4f10'
+  default-dark: '#e8b85a'
+- id: sp-brass
+  title: Brass (borders, table headers, buttons)
+  title.zh-TW: 黃銅（邊框、表頭、按鈕）
+  title.zh-tw: 黃銅（邊框、表頭、按鈕）
+  title.zh: 黄铜（边框、表头、按钮）
+  title.zh-cn: 黄铜（边框、表头、按钮）
+  title.ja: 真鍮（枠線・表の見出し・ボタン）
+  type: variable-themed-color
+  format: hex
+  default-light: '#9a6a1f'
+  default-dark: '#c8923a'
+- id: sp-copper
+  title: Copper (H2, folder names)
+  title.zh-TW: 紅銅（H2、文件夾名稱）
+  title.zh-tw: 紅銅（H2、文件夾名稱）
+  title.zh: 红铜（H2、文件夹名称）
+  title.zh-cn: 红铜（H2、文件夹名称）
+  title.ja: 銅（H2・フォルダ名）
+  type: variable-themed-color
+  format: hex
+  default-light: '#a2502a'
+  default-dark: '#c0693a'
+- id: sp-verdigris
+  title: Verdigris (H3, links)
+  title.zh-TW: 銅綠（H3、連結）
+  title.zh-tw: 銅綠（H3、連結）
+  title.zh: 铜绿（H3、链接）
+  title.zh-cn: 铜绿（H3、链接）
+  title.ja: 緑青（H3・リンク）
+  type: variable-themed-color
+  format: hex
+  default-light: '#2f7566'
+  default-dark: '#5fa896'
+- id: sp-h-fonts
+  title: Fonts (enter a full font list, separated by commas)
+  title.zh-TW: 字體（填完整字體清單，用逗號分隔）
+  title.zh-tw: 字體（填完整字體清單，用逗號分隔）
+  title.zh: 字体（填完整字体列表，用逗号分隔）
+  title.zh-cn: 字体（填完整字体列表，用逗号分隔）
+  title.ja: フォント（フォント一覧をカンマ区切りで入力）
+  type: heading
+  level: 1
+  collapsed: true
+- id: sp-font-head
+  title: Heading font
+  title.zh-TW: 標題字體
+  title.zh-tw: 標題字體
+  title.zh: 标题字体
+  title.zh-cn: 标题字体
+  title.ja: 見出しフォント
+  type: variable-text
+  default: Cinzel, "Noto Serif TC", "Songti TC", "PMingLiU", serif
+- id: sp-font-text
+  title: Body font
+  title.zh-TW: 正文字體
+  title.zh-tw: 正文字體
+  title.zh: 正文字体
+  title.zh-cn: 正文字体
+  title.ja: 本文フォント
+  type: variable-text
+  default: '"Crimson Pro", "Noto Serif TC", "Songti TC", "PMingLiU", serif'
+- id: sp-font-code
+  title: Code font
+  title.zh-TW: 代碼字體
+  title.zh-tw: 代碼字體
+  title.zh: 代码字体
+  title.zh-cn: 代码字体
+  title.ja: コードフォント
+  type: variable-text
+  default: '"Courier Prime", "Cascadia Mono", "Menlo", monospace'
 
 */
 
@@ -277,6 +437,13 @@ body {
   --sp-compass: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/><path d='M16 8l-2.2 5.8L8 16l2.2-5.8z'/></svg>");
   --sp-card: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linejoin='round' d='M4 4h16v16H4z'/><path d='M8 8h2M14 8h2M8 12h2M12 12h2M8 16h2M14 16h2' stroke='black' stroke-width='2' stroke-linecap='round'/></svg>");
   --sp-lens: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='black' stroke-width='2'/><circle cx='12' cy='12' r='3.4'/></svg>");
+  --sp-ico-html: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14'/></svg>");
+  --sp-ico-audio: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M9 18V6l10-2v12'/><circle cx='6.5' cy='18' r='2.5'/><circle cx='16.5' cy='16' r='2.5'/></svg>");
+  --sp-ico-video: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='14' rx='1.5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/><path d='M10 9.5v5l4.5-2.5z'/></svg>");
+  --sp-ico-code: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M9 4c-2.5 0-3 1-3 3v2c0 1.5-1 3-3 3 2 0 3 1.5 3 3v2c0 2 .5 3 3 3M15 4c2.5 0 3 1 3 3v2c0 1.5 1 3 3 3-2 0-3 1.5-3 3v2c0 2-.5 3-3 3'/></svg>");
+  --sp-ico-zip: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M4 7l8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10'/></svg>");
+  --sp-ico-doc: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M6 3h8l4 4v14H6z'/><path fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M9 12h6M9 16h6'/></svg>");
+  --sp-ico-sheet: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M4 4h16v16H4zM4 10h16M4 15h16M10 4v16'/></svg>");
   --sp-needle: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M11.1 3h1.8l.6 10.5h-3z'/><circle cx='12' cy='13' r='2.2'/></svg>");
   /* 背景裝飾用的大小齒輪 */
   --sp-gear-big: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill-rule='evenodd' d='M50 10a40 40 0 1 0 0 80a40 40 0 1 0 0-80zM50 44a6 6 0 1 1 0 12a6 6 0 1 1 0-12zM50 18.5a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM50 61.5a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM28.5 40a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM71.5 40a10 10 0 1 0 0 20a10 10 0 1 0 0-20z'/><circle cx='50' cy='50' r='44' fill='none' stroke='black' stroke-width='8' stroke-dasharray='6 5.52'/></svg>");
@@ -446,7 +613,7 @@ body {
 .nav-folder-title[data-path="Projects"] .nav-folder-title-content::before { -webkit-mask-image:var(--sp-gear); mask-image:var(--sp-gear); }
 */
 
-/* 4d. 文件圖標：機械錶盤；canvas＝羅盤、pdf＝打孔卡、圖片＝鏡頭 */
+/* 4d. 文件圖標：筆記＝機械錶盤；canvas＝羅盤、pdf / base＝打孔卡、圖片＝鏡頭、html＝尖括號、音樂＝音符、影片＝放映框、程式碼＝大括號、壓縮檔＝木箱、文件＝紙頁、試算表＝格線 */
 .nav-file-title-content::before {
   content:""; display:inline-block; width:14px; height:14px; margin-right:6px; vertical-align:-2px;
   background:var(--sp-steel);
@@ -461,6 +628,54 @@ body {
 .nav-file-title[data-path$=".gif"] .nav-file-title-content::before,
 .nav-file-title[data-path$=".webp"] .nav-file-title-content::before,
 .nav-file-title[data-path$=".svg"] .nav-file-title-content::before { -webkit-mask-image:var(--sp-lens); mask-image:var(--sp-lens); }
+.nav-file-title[data-path$=".html" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".htm" i] .nav-file-title-content::before { -webkit-mask-image:var(--sp-ico-html); mask-image:var(--sp-ico-html); }
+.nav-file-title[data-path$=".mp3" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".wav" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".m4a" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".ogg" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".flac" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".aac" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".opus" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".3gp" i] .nav-file-title-content::before { -webkit-mask-image:var(--sp-ico-audio); mask-image:var(--sp-ico-audio); }
+.nav-file-title[data-path$=".mp4" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".webm" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".ogv" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".mov" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".mkv" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".avi" i] .nav-file-title-content::before { -webkit-mask-image:var(--sp-ico-video); mask-image:var(--sp-ico-video); }
+.nav-file-title[data-path$=".js" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".ts" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".jsx" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".tsx" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".json" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".css" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".py" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".java" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".c" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".cpp" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".go" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".rs" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".sh" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".yml" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".yaml" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".xml" i] .nav-file-title-content::before { -webkit-mask-image:var(--sp-ico-code); mask-image:var(--sp-ico-code); }
+.nav-file-title[data-path$=".zip" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".rar" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".7z" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".tar" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".gz" i] .nav-file-title-content::before { -webkit-mask-image:var(--sp-ico-zip); mask-image:var(--sp-ico-zip); }
+.nav-file-title[data-path$=".txt" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".doc" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".docx" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".ppt" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".pptx" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".rtf" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".log" i] .nav-file-title-content::before { -webkit-mask-image:var(--sp-ico-doc); mask-image:var(--sp-ico-doc); }
+.nav-file-title[data-path$=".xls" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".xlsx" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".csv" i] .nav-file-title-content::before,
+.nav-file-title[data-path$=".tsv" i] .nav-file-title-content::before { -webkit-mask-image:var(--sp-ico-sheet); mask-image:var(--sp-ico-sheet); }
 .nav-file-title:hover .nav-file-title-content::before { background:var(--sp-brass); }
 .nav-file-title.is-active .nav-file-title-content::before { background:var(--sp-brass-hi); filter:drop-shadow(0 0 3px rgba(232,184,90,.6)); }
 
